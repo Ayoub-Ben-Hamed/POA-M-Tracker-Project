@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme {
+  /* Severity & SLA functional colors */
+  --color-severity-critical: #DC2626;
+  --color-severity-high: #EA580C;
+  --color-severity-moderate: #D97706;
+  --color-severity-low: #16A34A;
+
+  --color-sla-ontrack: #16A34A;
+  --color-sla-atrisk: #D97706;
+  --color-sla-overdue: #EA580C;
+  --color-sla-severe: #DC2626;
+  --color-sla-completed: #6B7280;
+
+  /* Decorative design tokens */
+  --color-bg-canvas: #E7E9F2;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-surface-tint: #F4F5F9;
+  --color-accent-primary: #FF5A3C;
+  --color-accent-primary-hover: #E64A2E;
+  --color-accent-dark: #1A1D29;
+  --color-text-primary: #1A1D29;
+  --color-text-secondary: #6B7280;
+  --color-text-muted: #9CA3AF;
+  --color-border-soft: rgba(26, 29, 41, 0.06);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  background-color: var(--color-bg-canvas);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.card-float {
+  background-color: var(--color-bg-surface);
+  box-shadow:
+    0 1px 2px rgba(26, 29, 41, 0.04),
+    0 8px 24px rgba(26, 29, 41, 0.06);
+}
+
+/* Custom Recharts tooltip — dark themed */
+.recharts-custom-tooltip {
+  background-color: var(--color-accent-dark) !important;
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 10px 14px;
+  border: none !important;
+  box-shadow: 0 8px 24px rgba(26, 29, 41, 0.24);
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.recharts-custom-tooltip .tooltip-label {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.recharts-custom-tooltip .tooltip-value {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+}
+
+/* Override default Recharts legend text */
+.recharts-legend-item-text {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif !important;
+  font-size: 12px !important;
+  color: var(--color-text-secondary) !important;
+}
+
+/* Dashboard section title pattern */
+.dashboard-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* Donut center label */
+.donut-center-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  text-align: center;
+  pointer-events: none;
+}
+@keyframes slide-up { from { opacity: 0; transform: translateY(100%); } to { opacity: 1; transform: translateY(0); } }
+.animate-slide-up { animation: slide-up 0.3s ease-out forwards; }
