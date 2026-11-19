@@ -1,8 +1,8 @@
 <div align="center">
 
-# 🛡️ POA&M Tracker
+# POA&M Tracker
 
-### Federal Cybersecurity GRC — Plan of Action & Milestones Management Tool
+### Federal Cybersecurity GRC : Plan of Action & Milestones Management Tool
 
 [![React](https://img.shields.io/badge/React-19.2.7-61dafb?logo=react&logoColor=white&style=flat-square)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-8.1.1-646cff?logo=vite&logoColor=white&style=flat-square)](https://vitejs.dev/)
@@ -19,7 +19,7 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 1. [What is a POA&M?](#-what-is-a-poam)
 2. [Project Overview](#-project-overview)
@@ -56,11 +56,11 @@
 
 ---
 
-## 🔐 What is a POA&M?
+## What is a POA&M?
 
 A **Plan of Action and Milestones (POA&M)** is a formal federal information security document that identifies security weaknesses found in an information system and tracks the plan to remediate them.
 
-Every federal agency operating under **FISMA (Federal Information Security Modernization Act)** is required to maintain POA&Ms for each system granted an **Authority to Operate (ATO)**. When an assessor, vulnerability scanner, or penetration tester discovers a weakness — such as an unpatched system, a misconfigured firewall, or inadequate access controls — it is recorded as a POA&M item with:
+Every federal agency operating under **FISMA (Federal Information Security Modernization Act)** is required to maintain POA&Ms for each system granted an **Authority to Operate (ATO)**. When an assessor, vulnerability scanner, or penetration tester discovers a weakness , such as an unpatched system, a misconfigured firewall, or inadequate access controls — it is recorded as a POA&M item with:
 
 - An assigned owner (Point of Contact / POC)
 - A remediation plan and milestone notes
@@ -73,7 +73,7 @@ This application implements a complete POA&M management capability as a self-con
 
 ---
 
-## 🎯 Project Overview
+## Project Overview
 
 The POA&M Tracker is a **fully client-side React Single Page Application (SPA)** designed for cybersecurity GRC teams. It provides:
 
@@ -89,13 +89,13 @@ The POA&M Tracker is a **fully client-side React Single Page Application (SPA)**
 
 ---
 
-## ✨ Features
+## Features
 
 ### Dashboard
 
 The Dashboard provides a real-time overview of the organization's remediation posture across six visual components:
 
-#### 📊 Summary KPI Cards
+#### Summary KPI Cards
 Four at-a-glance metric cards compute in real time:
 
 | Card | Metric |
@@ -105,25 +105,25 @@ Four at-a-glance metric cards compute in real time:
 | **Avg Risk Score** | Mean risk score (0–10) of all active Open/In Progress items |
 | **Closed This Month** | Items marked `Completed` in the current calendar month |
 
-#### 📈 Open Items by NIST Control Family (Horizontal Bar Chart)
+#### Open Items by NIST Control Family (Horizontal Bar Chart)
 Groups all open/in-progress items by their NIST SP 800-53 control family code. Bars are color-coded by the highest severity item within each family (Critical → red, High → orange, Moderate → amber, Low → green). This reveals systemic control gaps requiring programmatic remediation rather than one-off fixes.
 
-#### 🍩 Severity Breakdown (Donut Chart)
+#### Severity Breakdown (Donut Chart)
 Displays the entire portfolio (excluding Cancelled) broken down by severity (Critical / High / Moderate / Low). The center of the donut shows the total item count. A heavy skew toward Critical/High signals urgent resource allocation needs.
 
-#### 🟦 SLA Compliance (CSS Stacked Bar + Action Table)
+#### SLA Compliance (CSS Stacked Bar + Action Table)
 A proportional stacked bar visualization showing the share of active items in each SLA bucket:
-- **On Track** — Deadline is more than 14 days away
-- **At Risk** — Deadline is within 14 days
-- **Overdue** — Past deadline by 1–30 days
-- **Severely Overdue** — Past deadline by more than 30 days
+- **On Track** : Deadline is more than 14 days away
+- **At Risk** : Deadline is within 14 days
+- **Overdue** : Past deadline by 1–30 days
+- **Severely Overdue** : Past deadline by more than 30 days
 
 Below the bar, a summary table provides a count, percentage, and recommended action per SLA category. The **On Track percentage** is a key ATO health indicator — below ~70% may signal compliance risk.
 
-#### 🏆 Top Risk Items Table
+#### Top Risk Items Table
 A ranked table of the top 5 highest-risk active items, sorted by composite risk score (descending). Columns include: Risk Score badge, POA&M ID, Title (truncated), Severity badge, Days Overdue, and POC with avatar initials. These are the items requiring immediate escalation.
 
-#### 📉 12-Month Trend Line (Area Chart)
+#### 12-Month Trend Line (Area Chart)
 A dual-line area chart showing the evolution of the Open and Closed item counts over the past 12 calendar months. Data is simulated from item `dateIdentified` and `dateOfClosure` fields, reconstructing what the portfolio looked like at each month-end.
 
 > **Interpretation**: A healthy program shows Open items peaking then declining as Closed items accumulate (an S-curve). Flat or rising Open with a flat Closed line indicates a degrading remediation program.
@@ -134,7 +134,7 @@ A dual-line area chart showing the evolution of the Open and Closed item counts 
 
 The Tracker page is the primary data management interface.
 
-#### 🔍 Advanced Filtering
+#### Advanced Filtering
 `FilterBar` provides multi-dimensional filtering with AND logic — items must satisfy all active constraints simultaneously:
 
 | Filter | Type | Behavior |
@@ -148,7 +148,7 @@ The Tracker page is the primary data management interface.
 
 Filter state is **persisted to `localStorage`** and restored on page reload.
 
-#### ↕️ Column Sorting
+#### Column Sorting
 Click any column header in `POAMTable` to sort. Clicking the same header again reverses direction.
 
 | Column | Sort Logic |
@@ -158,31 +158,31 @@ Click any column header in `POAMTable` to sort. Clicking the same header again r
 | Dates | Chronological |
 | Text fields | Alphabetical |
 
-#### 📝 Full CRUD Operations
+#### Full CRUD Operations
 
 | Action | Detail |
 |--------|--------|
 | **Add (N key shortcut)** | Opens `AddPOAMModal`. Auto-generates a sequential ID in `POAM-YYYY-NNN` format. All required fields validated before save. |
 | **Edit** | Opens `EditPOAMModal` pre-populated with the selected item. Changing status to `Completed` displays an informational alert and auto-sets `dateOfClosure` to today. |
 | **Delete** | Triggers `ConfirmDialog` before permanently removing the item from state and `localStorage`. |
-| **Detail View** | Click any table row to open `POAMDetailModal` — a read-only full-field view with an optional Quick Resolve section for active items. |
+| **Detail View** | Click any table row to open `POAMDetailModal` : a read-only full-field view with an optional Quick Resolve section for active items. |
 
-#### ⚡ Quick Resolve
+#### Quick Resolve
 Within the Detail Modal, active (Open / In Progress) items display a **Quick Resolve** panel with three instant actions:
-- **Mark Complete** — Sets status to `Completed`, assigns today as `dateOfClosure`
-- **Accept Risk** — Sets status to `Risk Accepted`, caps risk score at 5.0
-- **Cancel** — Sets status to `Cancelled`, zeroes the risk score
+- **Mark Complete** : Sets status to `Completed`, assigns today as `dateOfClosure`
+- **Accept Risk** : Sets status to `Risk Accepted`, caps risk score at 5.0
+- **Cancel** : Sets status to `Cancelled`, zeroes the risk score
 
 All quick resolve actions require an inline confirmation before saving.
 
-#### 🧊 Frozen Days Overdue
+#### Frozen Days Overdue
 When an item is marked `Completed`, `Risk Accepted`, or `Cancelled`, its `daysOverdue` value is **frozen** at the exact count at time of closure. This preserves a historical record of how overdue the item was when it was resolved. Frozen values display in purple text in the table and detail modal.
 
-#### 📥 CSV Export
+#### CSV Export
 The `ExportButton` exports the currently filtered view to a `.csv` file, including: ID, Title, Control ID, Severity, Status, SLA Status, Risk Score, Days Overdue, Dates, and POC.
 
-#### ⌨️ Keyboard Accessibility
-- **`N` key** — Global shortcut to open the Add POA&M modal from any page
+#### Keyboard Accessibility
+- **`N` key** : Global shortcut to open the Add POA&M modal from any page
 - All table actions have descriptive `aria-label` attributes (e.g., `"Edit POAM-2024-001"`)
 - Modals trap focus and can be dismissed via `Escape` or backdrop click
 
@@ -192,7 +192,7 @@ The `ExportButton` exports the currently filtered view to a `.csv` file, includi
 
 A read-only, executive-level analytics view designed for stakeholders and auditors.
 
-#### 📋 Executive Summary Grid
+#### Executive Summary Grid
 A 2×3 KPI grid showing:
 - Total POA&M Items
 - Open + In Progress count
@@ -201,31 +201,31 @@ A 2×3 KPI grid showing:
 - Average Risk Score across all active items
 - Critical + High Open item count
 
-#### 📝 Auto-generated Narrative
+#### Auto-generated Narrative
 A dynamically composed paragraph that translates the raw metrics into plain English, calling out the SLA breach rate and highlighting the single highest-risk item by name, severity, days overdue, and risk score.
 
-#### 🗂️ By Control Family Table
+#### By Control Family Table
 Aggregates all items by NIST family and shows: Total, Open, Overdue counts, Average Risk Score, and a **Status** indicator:
-- 🔴 **Needs Attention** — Any item is Severely Overdue
-- 🟠 **Monitor** — Any item is Overdue (but none Severely)
-- 🟢 **On Track** — No items are overdue
+- 🔴 **Needs Attention** : Any item is Severely Overdue
+- 🟠 **Monitor** : Any item is Overdue (but none Severely)
+- 🟢 **On Track** : No items are overdue
 
 Sorted automatically by Average Risk Score (highest first).
 
-#### 👤 By Responsible POC Table
+#### By Responsible POC Table
 Groups items by assigned POC, showing: Total Assigned, Open, Overdue counts, and **Overdue Rate** (% of their active items that are overdue). Color-coded: Red (>30%), Amber (10–30%), Green (<10%). Sorted by Overdue Rate descending.
 
-#### 📤 Three CSV Export Options
-1. **Export All Items** — Full dataset
-2. **Export Open Items Only** — Filters out Completed, Cancelled, Risk Accepted
-3. **Export Overdue Items** — Only items currently breaching SLA
+#### Three CSV Export Options
+1. **Export All Items** : Full dataset
+2. **Export Open Items Only** : Filters out Completed, Cancelled, Risk Accepted
+3. **Export Overdue Items** : Only items currently breaching SLA
 
-#### 🔄 Reset to Seed Data
+#### Reset to Seed Data
 A "Danger Zone" button that wipes all `localStorage` modifications and restores the original 28 seed items. Includes a `ConfirmDialog` to prevent accidental loss.
 
 ---
 
-## 🧰 Tech Stack
+## Tech Stack
 
 | Library | Version | Purpose |
 |---------|---------|---------|
@@ -242,26 +242,26 @@ A "Danger Zone" button that wipes all `localStorage` modifications and restores 
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ### Application Design Philosophy
 
 The POA&M Tracker is built around three core design decisions:
 
-1. **No Backend** — The application runs entirely in the browser. All data lives in `localStorage`, making it instantly deployable to GitHub Pages or any static host with zero infrastructure.
+1. **No Backend** : The application runs entirely in the browser. All data lives in `localStorage`, making it instantly deployable to GitHub Pages or any static host with zero infrastructure.
 
-2. **No Routing Library** — Navigation is handled by a single `currentPage` string in `App.jsx` using a `switch` statement. The app has only three views (`dashboard`, `tracker`, `reports`), making a full routing library unnecessary overhead.
+2. **No Routing Library** : Navigation is handled by a single `currentPage` string in `App.jsx` using a `switch` statement. The app has only three views (`dashboard`, `tracker`, `reports`), making a full routing library unnecessary overhead.
 
-3. **Computed Fields Are Never Stored** — `slaStatus`, `daysOverdue`, and `riskScore` are recalculated at runtime on every render from the stored fields plus the current date. This prevents stale data and keeps the stored JSON clean and auditable.
+3. **Computed Fields Are Never Stored** : `slaStatus`, `daysOverdue`, and `riskScore` are recalculated at runtime on every render from the stored fields plus the current date. This prevents stale data and keeps the stored JSON clean and auditable.
 
 ---
 
 ### Component Hierarchy
 
 ```
-App.jsx  (root orchestrator — owns top-level state)
-├── usePOAMs (hook — CRUD + localStorage + enrichedItems)
-├── useFilters (hook — search/filter/sort state)
+App.jsx  (root orchestrator : owns top-level state)
+├── usePOAMs (hook : CRUD + localStorage + enrichedItems)
+├── useFilters (hook : search/filter/sort state)
 ├── Toast (global notification)
 └── Layout
     ├── Sidebar (navigation)
@@ -324,7 +324,7 @@ Dashboard Tracker   Reports
            + filters)
 ```
 
-Each Dashboard child component independently transforms `enrichedItems` with `useMemo` — no pre-computed chart data is passed as props.
+Each Dashboard child component independently transforms `enrichedItems` with `useMemo` , no pre-computed chart data is passed as props.
 
 ---
 
@@ -337,7 +337,7 @@ Each Dashboard child component independently transforms `enrichedItems` with `us
 | `isLoading` / `error` | `usePOAMs` | Tracks seed data initialization status. |
 | `addPOAM` / `updatePOAM` / `deletePOAM` / `resetToSeedData` | `usePOAMs` | CRUD handlers that update state + `localStorage` atomically. |
 | `currentPage` | `App.jsx` | Active route string: `'dashboard'`, `'tracker'`, or `'reports'`. |
-| `itemCounts` | `App.jsx` | `{ open, overdue, critical }` — derived from `enrichedItems` via `useMemo`. |
+| `itemCounts` | `App.jsx` | `{ open, overdue, critical }` , derived from `enrichedItems` via `useMemo`. |
 | `lastUpdated` | `App.jsx` | Latest `lastUpdated` date across all items, shown in `TopBar`. |
 | `toast` | `App.jsx` | Current toast notification `{ message, type }` or `null`. |
 | `searchQuery`, `filterSeverity`, `filterStatus`, `filterFamily`, `filterSLAStatus` | `useFilters` | Active filter state. Persisted to `localStorage`. |
@@ -465,7 +465,7 @@ Final Score = Math.min(10, Raw Score)   [rounded to 2 decimal places]
 
 | Days Overdue | Multiplier | Formula |
 |-------------|-----------|---------|
-| 0 days | 1.0 | Baseline — no penalty |
+| 0 days | 1.0 | Baseline , no penalty |
 | 1–30 days | 1.0 → 1.3 | `1.0 + (daysOverdue / 30) × 0.3` |
 | 31–90 days | 1.3 → 1.7 | `1.3 + ((daysOverdue - 30) / 60) × 0.4` |
 | >90 days | 2.0 | Maximum penalty |
@@ -486,8 +486,8 @@ Final Score:        Math.min(10, 14.7) = 10.00
 
 | Status | Risk Score |
 |--------|-----------|
-| `Completed` or `Cancelled` | **0.0** — Remediated/invalid findings pose no risk |
-| `Risk Accepted` | **Capped at 5.0** — AO has formally acknowledged the risk; treated as managed |
+| `Completed` or `Cancelled` | **0.0** , Remediated/invalid findings pose no risk |
+| `Risk Accepted` | **Capped at 5.0** , AO has formally acknowledged the risk; treated as managed |
 
 ### Implementation
 - **Formula**: [`src/utils/riskScore.js`](./src/utils/riskScore.js)
@@ -496,7 +496,7 @@ Final Score:        Math.min(10, 14.7) = 10.00
 
 ---
 
-## ⏱️ SLA Aging Formulas
+## SLA Aging Formulas
 
 Federal SLA thresholds define the maximum acceptable time to remediate a finding based on its severity. These are checked daily to determine each item's SLA status.
 
@@ -628,7 +628,7 @@ poam-tracker/
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -664,7 +664,7 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
-## 🌐 Deployment
+## Deployment
 
 ### GitHub Pages (Recommended)
 
@@ -705,15 +705,15 @@ Your app will be live at `https://<your-username>.github.io/<repository-name>/`
 | Symptom | Cause | Fix |
 |---------|-------|-----|
 | Blank white page | Incorrect asset base path | Ensure `base: "./"` in `vite.config.js` |
-| 404 on page reload | URL-based routing not supported by GitHub Pages | This app uses state-based routing — reloads always work on the root URL |
+| 404 on page reload | URL-based routing not supported by GitHub Pages | This app uses state-based routing , reloads always work on the root URL |
 | Data not saving | `localStorage` blocked | Ensure the site is not in an iframe with strict cross-origin policies or incognito with cookies blocked |
-| Seed data not loading | App opened as `file://` URL | Must be served over HTTP — use `npm run dev` or a static server |
+| Seed data not loading | App opened as `file://` URL | Must be served over HTTP , use `npm run dev` or a static server |
 
 ---
 
-## 🪝 Custom Hooks Reference
+## Custom Hooks Reference
 
-### `usePOAMs` — [`src/hooks/usePOAMs.js`](./src/hooks/usePOAMs.js)
+### `usePOAMs`  [`src/hooks/usePOAMs.js`](./src/hooks/usePOAMs.js)
 
 The primary data layer hook. Manages all POAM data with localStorage persistence, seed data initialization, and CRUD operations.
 
@@ -737,7 +737,7 @@ const { enrichedItems, addPOAM, isLoading } = usePOAMs();
 
 ---
 
-### `useFilters` — [`src/hooks/useFilters.js`](./src/hooks/useFilters.js)
+### `useFilters` , [`src/hooks/useFilters.js`](./src/hooks/useFilters.js)
 
 Manages all filter, search, and sort state. Filter state is persisted to `localStorage` and restored on mount.
 
@@ -766,7 +766,7 @@ const filtered = applyFilters(enrichedItems);
 
 ---
 
-### `useRiskScore` — [`src/hooks/useRiskScore.js`](./src/hooks/useRiskScore.js)
+### `useRiskScore` , [`src/hooks/useRiskScore.js`](./src/hooks/useRiskScore.js)
 
 A thin presentation wrapper exposing risk calculation utilities to components.
 
@@ -786,7 +786,7 @@ const top5 = getTopRiskItems(enrichedItems, 5);
 
 ---
 
-## 🛠️ Utility Functions Reference
+## Utility Functions Reference
 
 ### `src/utils/aging.js`
 
@@ -854,7 +854,7 @@ Exports the following constants and utility functions:
 
 ---
 
-## 🌱 Seed Data
+## Seed Data
 
 The application ships with **28 realistic POA&M items** in [`public/data/poams.json`](./public/data/poams.json), covering:
 
@@ -872,7 +872,7 @@ The seed data is fetched once on the user's first visit and written to `localSto
 
 ---
 
-## 🤔 Design Decisions
+## Design Decisions
 
 | Decision | Rationale |
 |----------|-----------|
@@ -889,7 +889,7 @@ The seed data is fetched once on the user's first visit and written to `localSto
 
 ---
 
-## 📐 Naming Conventions
+## Naming Conventions
 
 | Item | Convention | Example |
 |------|-----------|---------|
@@ -920,20 +920,20 @@ This is a frontend-only portfolio demonstration. It has the following intentiona
 
 ---
 
-## 🎤 Portfolio Presentation Guide
+## Portfolio Presentation Guide
 
 If presenting this project in a portfolio or technical interview, use the following demo flow and talking points.
 
 ### Suggested Demo Order
 
-1. **Dashboard First** — Open the dashboard and explain the KPI cards. Walk through the SLA Compliance bar and note the On Track percentage. Highlight the TrendLineChart and explain how it simulates historical posture from item dates.
-2. **Tracker Page** — Use the search bar to filter for `"critical"`. Apply the Severity dropdown to layer filters. Click a table row to open the Detail Modal and show the Quick Resolve workflow.
-3. **CRUD Live Demo** — Press the **`N`** keyboard shortcut to add a new item. Fill in a realistic scenario. Then edit an existing item and change its status to `Completed` — point out the auto-date assignment alert.
-4. **Reports Page** — Show the Executive Summary grid and explain how the auto-generated narrative works. Demonstrate the three CSV export options. Show the Reset to Seed Data button.
+1. **Dashboard First** : Open the dashboard and explain the KPI cards. Walk through the SLA Compliance bar and note the On Track percentage. Highlight the TrendLineChart and explain how it simulates historical posture from item dates.
+2. **Tracker Page**  Use the search bar to filter for `"critical"`. Apply the Severity dropdown to layer filters. Click a table row to open the Detail Modal and show the Quick Resolve workflow.
+3. **CRUD Live Demo** - Press the **`N`** keyboard shortcut to add a new item. Fill in a realistic scenario. Then edit an existing item and change its status to `Completed` - point out the auto-date assignment alert.
+4. **Reports Page** - Show the Executive Summary grid and explain how the auto-generated narrative works. Demonstrate the three CSV export options. Show the Reset to Seed Data button.
 
 ### Technical Talking Points
 
-- **Domain knowledge**: The SLA thresholds, risk score formula, NIST control family groupings, and ATO health indicators are all aligned with real federal GRC programs — not invented for the demo.
+- **Domain knowledge**: The SLA thresholds, risk score formula, NIST control family groupings, and ATO health indicators are all aligned with real federal GRC programs - not invented for the demo.
 - **Clean architecture without over-engineering**: No Redux, no React Router, no external form libraries. The three-page app is managed by a single `useState` string and two custom hooks.
 - **Computed fields strategy**: `riskScore` and `daysOverdue` are derived at runtime from stored fields + the current date — so every page load reflects live risk posture, not a stale snapshot.
 - **Tailwind CSS v4**: Uses `@theme` blocks in CSS for design tokens instead of `tailwind.config.js`, demonstrating knowledge of the current ecosystem.
@@ -954,7 +954,7 @@ This project is primarily a portfolio demonstration, but contributions are welco
 ### Before Contributing
 
 - Review [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md) for the design philosophy
-- Review [`docs/DATA_MODEL.md`](./docs/DATA_MODEL.md) — the 20-field data model is final
+- Review [`docs/DATA_MODEL.md`](./docs/DATA_MODEL.md) , the 20-field data model is final
 - Run `npm run lint` before committing
 - Do not add computed fields (`slaStatus`, `daysOverdue`, `riskScore`) to the stored data model
 
